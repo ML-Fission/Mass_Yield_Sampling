@@ -1,46 +1,49 @@
 # Mass Yield Sampling
 Gaussian Algorithms for synthetic data generation of fission mass yields
 
-### Στα requirements.txt βρίσκονται οι βιβλιοθήκες που χρειάζεται: 
+### In requirements.txt are the libraries that are needed: 
 ```pip install -r requirements.txt```
 
-## Για το Gaussian Process Regression
+## For Gaussian Process Regression
 
 ### Sampling
 
-Χρησιμοποιήθηκε το **Gaussian Mixture** από το scikit-learn για να γίνουν extract 10,000 samples -> **test_data**
+**Gaussian Mixture** was used from scikit-learn library in order to extract 10,000 samples -> **test_data**
 
-### Δομή του GPR:
-1. Εισαγωγή data και χωρισμός σε input-output
+### GPR Structure:
+1. Insert data και divide input-output
 2. Train_data = Expiremental Data (JENDL 5.0) (U-235, U-238, Th-232, Cm-246 (Induced))
 3. Test_data = GaussianMixture samples
->Με το **linspace** της numpy κάνω το X -> 10.000 data αντί για 107
-5. Δοκιμή των kernels:
+>With **linspace** of numpy the X becomes 10.000 data instead 107
+5. Kernels trials:
    - **ContantKernel**
    - **RBF**
    - **ExpSineSquared**
-6. Με **n_restarts_optimizer=300** για τα epochs
-7. **fit** του model και **predict** των errors
-8. Γραφική με το **matplotlib** με Prediction, Observation, Confidence Interval
+6. With **n_restarts_optimizer=300** for epochs
+7. **fit** the model and **prediction** of errors
+8. Plots with **matplotlib** for Prediction, Observation, Confidence Interval
 
-## Για το Gaussian Mixture Regression
+## For Gaussian Mixture Regression
 
-1. Εισαγωγή data και χωρισμός σε input-output (αλλαγή του element variable για συγκεκριμένο στοιχείο που θέλουμε να προβλέψουμε)
-2. Δημιουργία Gaussian Mixture Model με for loop στην χρήση aic criterion για τον βέλτιστο αριθμό gaussians
-3. Δημιουργία Gaussian Mixture Regression model με:
-    - Αριθμό gaussians = αριθμό gaussians gmm
+1. Data insertion, division for inputs-outputs (change of element variable for specific element we want to predict)
+2. Creation Gaussian Mixture Model with for loop for aic criterion in order to get the best number of gaussians
+3. Creation Gaussian Mixture Regression model with:
+    - Number of gaussians = number of gaussians gmm
     - priors = gmm weights
     - means = gmm means
     - covariances = gmm covariances κανονικοποιημένα
-4. Plot GMR και data extraction
+4. Plot GMR and data extraction
 
 ## Script Usage
 
 ### Automation Script
 ```python pass_arg_GPR.py "CSV_File" "Plot Title"```
 
-- Για το CSV_File μπορούν να επιλεχθούν από το Data Folder όπως **./Data/Th-232**
-- Για το Plot Title μπορεί ως εξής : **Τh-232 (Induced)**
+- The elements can be picked from the CSV_File that is located Data Folder like this: **./Data/Th-232**
+- For the Plot Title it can be written : **Τh-232 (Induced)**
 
+# Citing
+The main publication (and documentation) to cite is:
 
+- Vasilis Tsioulos and Vaia Prassa, "Machine learning analysis of fission product yields", EPJ Web Conf., 304 (2024) 01015, DOI: [10.1051/epjconf/202430401015](https://doi.org/10.1051/epjconf/202430401015)
 
